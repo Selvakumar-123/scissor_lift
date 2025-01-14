@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scissor Lift Checklist</title>
+    <style>
+        .signature-pad {
+            border: 1px solid #000;
+            width: 300px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Scissor Lift Checklist</h1>
+    <form id="checklistForm">
+        <!-- Checklist items -->
+        <h3>Operating and emergency controls are in proper working condition:</h3>
+        <label><input type="radio" name="operating_controls" value="Yes" required> Yes</label>
+        <label><input type="radio" name="operating_controls" value="No"> No</label>
+        <label><input type="radio" name="operating_controls" value="NA"> N/A</label>
+        <h3>Emergency lowering function operates properly:</h3>
+        <label><input type="radio" name="emergency_lowering" value="Yes" required> Yes</label>
+        <label><input type="radio" name="emergency_lowering" value="No"> No</label>
+        <label><input type="radio" name="emergency_lowering" value="NA"> N/A</label>
+
+        <h3>Lower operating controls successfully override the upper controls:</h3>
+        <label><input type="radio" name="override_controls" value="Yes" required> Yes</label>
+        <label><input type="radio" name="override_controls" value="No"> No</label>
+        <label><input type="radio" name="override_controls" value="NA"> N/A</label>
+
+        <h3>Both upper & lower controls are protected from inadvertent operation:</h3>
+        <label><input type="radio" name="protected_controls" value="Yes" required> Yes</label>
+        <label><input type="radio" name="protected_controls" value="No"> No</label>
+        <label><input type="radio" name="protected_controls" value="NA"> N/A</label>
+
+        <h3>Control panel is clean; all buttons and switches are clearly visible:</h3>
+        <label><input type="radio" name="control_panel" value="Yes" required> Yes</label>
+        <label><input type="radio" name="control_panel" value="No"> No</label>
+        <label><input type="radio" name="control_panel" value="NA"> N/A</label>
+
+        <h3>All switch and mechanical guards are properly installed and in good condition:</h3>
+        <label><input type="radio" name="switch_guards" value="Yes" required> Yes</label>
+        <label><input type="radio" name="switch_guards" value="No"> No</label>
+        <label><input type="radio" name="switch_guards" value="NA"> N/A</label>
+
+        <h3>All safety indicator lights are in proper working condition:</h3>
+        <label><input type="radio" name="indicator_lights" value="Yes" required> Yes</label>
+        <label><input type="radio" name="indicator_lights" value="No"> No</label>
+        <label><input type="radio" name="indicator_lights" value="NA"> N/A</label>
+
+        <h3>Drive controls function properly and are accurately labeled:</h3>
+        <label><input type="radio" name="drive_controls" value="Yes" required> Yes</label>
+        <label><input type="radio" name="drive_controls" value="No"> No</label>
+        <label><input type="radio" name="drive_controls" value="NA"> N/A</label>
+
+        <h3>Motion alarms are functioning:</h3>
+        <label><input type="radio" name="motion_alarms" value="Yes" required> Yes</label>
+        <label><input type="radio" name="motion_alarms" value="No"> No</label>
+        <label><input type="radio" name="motion_alarms" value="NA"> N/A</label>
+
+        <h3>All guard rails are in place, including basket chains:</h3>
+        <label><input type="radio" name="guard_rails" value="Yes" required> Yes</label>
+        <label><input type="radio" name="guard_rails" value="No"> No</label>
+        <label><input type="radio" name="guard_rails" value="NA"> N/A</label>
+
+        <h3>Work platform extension slides in & out freely with safety locking pins in place:</h3>
+        <label><input type="radio" name="platform_extension" value="Yes" required> Yes</label>
+        <label><input type="radio" name="platform_extension" value="No"> No</label>
+        <label><input type="radio" name="platform_extension" value="NA"> N/A</label>
+
+        <h3>Work platform and extension slides are clean, dry and clear of debris:</h3>
+        <label><input type="radio" name="platform_clean" value="Yes" required> Yes</label>
+        <label><input type="radio" name="platform_clean" value="No"> No</label>
+        <label><input type="radio" name="platform_clean" value="NA"> N/A</label>
+
+        <h3>Lift is free from defects such as cracked welds, fuel leaks, hydraulic leaks, etc.:</h3>
+        <label><input type="radio" name="lift_defects" value="Yes" required> Yes</label>
+        <label><input type="radio" name="lift_defects" value="No"> No</label>
+        <label><input type="radio" name="lift_defects" value="NA"> N/A</label>
+
+        <h3>Tires and wheels are in good condition with adequate pressure (if pneumatic):</h3>
+        <label><input type="radio" name="tires_condition" value="Yes" required> Yes</label>
+        <label><input type="radio" name="tires_condition" value="No"> No</label>
+        <label><input type="radio" name="tires_condition" value="NA"> N/A</label>
+
+        <h3>Oil level:</h3>
+        <label><input type="radio" name="oil_level" value="Good" required> Good</label>
+        <label><input type="radio" name="oil_level" value="Low"> Low</label>
+        <label><input type="radio" name="oil_level" value="NA"> N/A</label>
+
+        <h3>Hydraulic oil level:</h3>
+        <label><input type="radio" name="hydraulic_oil_level" value="Good" required> Good</label>
+        <label><input type="radio" name="hydraulic_oil_level" value="Low"> Low</label>
+        <label><input type="radio" name="hydraulic_oil_level" value="NA"> N/A</label>
+
+        <h3>Fuel level:</h3>
+        <label><input type="radio" name="fuel_level" value="Full" required> Full</label>
+        <label><input type="radio" name="fuel_level" value="Low"> Low</label>
+        <label><input type="radio" name="fuel_level" value="NA"> N/A</label>
+
+        <h3>Coolant level:</h3>
+        <label><input type="radio" name="coolant_level" value="Good" required> Good</label>
+        <label><input type="radio" name="coolant_level" value="Low"> Low</label>
+        <label><input type="radio" name="coolant_level" value="NA"> N/A</label>
+
+        <h3>Battery is charged:</h3>
+        <label><input type="radio" name="battery_charged" value="Yes" required> Yes</label>
+        <label><input type="radio" name="battery_charged" value="No"> No</label>
+        <label><input type="radio" name="battery_charged" value="NA"> N/A</label>
+
+        <h3>Personal protective equipment is in use (hard hat, fall arrest harness, etc.):</h3>
+        <label><input type="radio" name="ppe_in_use" value="Yes" required> Yes</label>
+        <label><input type="radio" name="ppe_in_use" value="No"> No</label>
+        <label><input type="radio" name="ppe_in_use" value="NA"> N/A</label>
+
+        <h3>Watch for vehicular and pedestrian traffic:</h3>
+        <label><input type="radio" name="traffic_watch" value="Yes" required> Yes</label>
+        <label><input type="radio" name="traffic_watch" value="No"> No</label>
+        <label><input type="radio" name="traffic_watch" value="NA"> N/A</label>
+
+        <!-- Additional Information -->
+        <h3>Name: <input type="text" name="name" required></h3>
+        <h3>Company: <input type="text" name="company" required></h3>
+        <h3>Scissor Lift Number:</h3>
+        <select name="lift_number" required>
+            <option value="">Select a lift number</option>
+            <option value="lift1">Lift 1</option>
+            <option value="lift2">Lift 2</option>
+            <option value="lift3">Lift 3</option>
+            <option value="lift4">Lift 4</option>
+        </select>
+        
+
+
+        <h3>Signature:</h3>
+        <canvas id="signaturePad" class="signature-pad"></canvas>
+        <button type="button" onclick="clearSignature()">Clear</button>
+
+        <br><br>
+        <input type="submit" value="Submit">
+        
+    <script>
+        const signaturePad = document.getElementById('signaturePad');
+        const context = signaturePad.getContext('2d');
+        let isDrawing = false;
+
+        signaturePad.addEventListener('mousedown', startDrawing);
+        signaturePad.addEventListener('mousemove', draw);
+        signaturePad.addEventListener('mouseup', stopDrawing);
+        signaturePad.addEventListener('mouseout', stopDrawing);
+
+        function startDrawing(event) {
+            isDrawing = true;
+            context.beginPath();
+            context.moveTo(event.offsetX, event.offsetY);
+        }
+
+        function draw(event) {
+            if (!isDrawing) return;
+            context.lineTo(event.offsetX, event.offsetY);
+            context.stroke();
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        function clearSignature() {
+            context.clearRect(0, 0, signaturePad.width, signaturePad.height);
+        }
+
+        document.getElementById('checklistForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const signatureData = signaturePad.toDataURL();
+        formData.append('signature', signatureData);
+
+        fetch('https://script.google.com/macros/s/AKfycbwXjqB9ro0_Ovkgjv0bZhdjWWRmv12d5CopPVZqqXWSx6yIKuz_R4Szo5SlMqMExZ0PBg/exec', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('Form submitted successfully!');
+            event.target.reset();
+            clearSignature();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('There was an error submitting the form.');
+        });
+    });
+    </script>
+</body>
+</html>
