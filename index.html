@@ -157,34 +157,73 @@
         <input type="submit" value="Submit">
         
     <script>
-        const signaturePad = document.getElementById('signaturePad');
-        const context = signaturePad.getContext('2d');
-        let isDrawing = false;
+  const signaturePad = document.getElementById('signaturePad');
+  const context = signaturePad.getContext('2d');
+  let isDrawing = false;
 
-        signaturePad.addEventListener('mousedown', startDrawing);
-        signaturePad.addEventListener('mousemove', draw);
-        signaturePad.addEventListener('mouseup', stopDrawing);
-        signaturePad.addEventListener('mouseout', stopDrawing);
+  // For older mobile support
+  signaturePad.addEventListener('touchstart', startDrawing, false);
+  signaturePad.addEventListener('touchmove', draw, false);
+  signaturePad.addEventListener('touchend', stopDrawing, false);
 
-        function startDrawing(event) {
-            isDrawing = true;
-            context.beginPath();
-            context.moveTo(event.offsetX, event.offsetY);
-        }
+  // Still keep mouse events for desktop
+  signaturePad.addEventListener('mousedown', startDrawing);
+  signaturePad.addEventListener('mousemove', draw);
+  signaturePad.addEventListener('mouseup', stopDrawing);
+  signaturePad.addEventListener('mouseout', stopDrawing);
 
-        function draw(event) {
-            if (!isDrawing) return;
-            context.lineTo(event.offsetX, event.offsetY);
-            context.stroke();
-        }
+  function getTouchPos(event) {
+    const rect = signaturePad.getBoundingClientRect();
+    return {
+      x: event.touches[0].clientX - rect.left,
+      y: event.touches[0].clientY - rect.top
+    };
+  }
 
-        function stopDrawing() {
-            isDrawing = false;
-        }
+  function startDrawing(event) {
+    isDrawing = true;
+    context.beginPath();
+    let pos;
+    if (event.type.includes('touch')) {
+      pos = getTouchPos(event);
+    } else {
+      pos = getMousePos(event);
+    }
+    context.moveTo(pos.x, pos.y);
+  }
 
-        function clearSignature() {
-            context.clearRect(0, 0, signaturePad.width, signaturePad.height);
-        }
+  function draw(event) {
+    if (!isDrawing) return;
+    let pos;
+    if (event.type.includes('touch')) {
+      pos = getTouchPos(event);
+    } else {
+      pos = getMousePos(event);
+    }
+    context.lineTo(pos.x, pos.y);
+    context.stroke();
+    // Prevent scrolling when drawing on touch screens
+    if (event.type === 'touchmove') {
+      event.preventDefault();
+    }
+  }
+
+  function stopDrawing() {
+    isDrawing = false;
+  }
+
+  function clearSignature() {
+    context.clearRect(0, 0, signaturePad.width, signaturePad.height);
+  }
+
+  function getMousePos(event) {
+    const rect = signaturePad.getBoundingClientRect();
+    return {
+      x: event.offsetX ?? event.clientX - rect.left,
+      y: event.offsetY ?? event.clientY - rect.top
+    };
+  }
+
 
         document.getElementById('checklistForm').addEventListener('submit', function(event) {
         event.preventDefault();
