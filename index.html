@@ -157,72 +157,35 @@
         <input type="submit" value="Submit">
         
     <script>
-  const signaturePad = document.getElementById('signaturePad');
-  const context = signaturePad.getContext('2d');
-  let isDrawing = false;
+  const canvas = document.getElementById('signaturePad');
+      const context = canvas.getContext('2d');
+      let drawing = false;
 
-  // For older mobile support
-  signaturePad.addEventListener('touchstart', startDrawing, false);
-  signaturePad.addEventListener('touchmove', draw, false);
-  signaturePad.addEventListener('touchend', stopDrawing, false);
+      canvas.addEventListener('mousedown', (e) => {
+        drawing = true;
+        context.beginPath();
+        context.moveTo(e.offsetX, e.offsetY);
+      });
 
-  // Still keep mouse events for desktop
-  signaturePad.addEventListener('mousedown', startDrawing);
-  signaturePad.addEventListener('mousemove', draw);
-  signaturePad.addEventListener('mouseup', stopDrawing);
-  signaturePad.addEventListener('mouseout', stopDrawing);
+      canvas.addEventListener('mousemove', (e) => {
+        if (drawing) {
+          context.lineTo(e.offsetX, e.offsetY);
+          context.stroke();
+        }
+      });
 
-  function getTouchPos(event) {
-    const rect = signaturePad.getBoundingClientRect();
-    return {
-      x: event.touches[0].clientX - rect.left,
-      y: event.touches[0].clientY - rect.top
-    };
-  }
+      window.addEventListener('mouseup', () => {
+        drawing = false;
+      });
 
-  function startDrawing(event) {
-    isDrawing = true;
-    context.beginPath();
-    let pos;
-    if (event.type.includes('touch')) {
-      pos = getTouchPos(event);
-    } else {
-      pos = getMousePos(event);
-    }
-    context.moveTo(pos.x, pos.y);
-  }
+      // Clear signature
+      function clearSignature() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+      }
 
-  function draw(event) {
-    if (!isDrawing) return;
-    let pos;
-    if (event.type.includes('touch')) {
-      pos = getTouchPos(event);
-    } else {
-      pos = getMousePos(event);
-    }
-    context.lineTo(pos.x, pos.y);
-    context.stroke();
-    // Prevent scrolling when drawing on touch screens
-    if (event.type === 'touchmove') {
-      event.preventDefault();
-    }
-  }
+      // Expose clearSignature() to global scope so button can call it
+      window.clearSignature = clearSignature;
 
-  function stopDrawing() {
-    isDrawing = false;
-  }
-
-  function clearSignature() {
-    context.clearRect(0, 0, signaturePad.width, signaturePad.height);
-  }
-
-  function getMousePos(event) {
-    const rect = signaturePad.getBoundingClientRect();
-    return {
-      x: event.offsetX ?? event.clientX - rect.left,
-      y: event.offsetY ?? event.clientY - rect.top
-    };
-  }
 
 
         document.getElementById('checklistForm').addEventListener('submit', function(event) {
